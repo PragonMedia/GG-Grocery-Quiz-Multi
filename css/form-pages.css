@@ -101,14 +101,14 @@ main {
   }
 }
 .form-question {
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   font-weight: 700;
   color: #374151;
   padding: 16px 0 20px;
 }
 @media (min-width: 640px) {
   .form-question {
-    font-size: 1.75rem;
+    font-size: 2.25rem;
   }
 }
 .form-buttons {
@@ -120,8 +120,8 @@ main {
 }
 .form-btn {
   width: 100%;
-  padding: 24px 28px;
-  font-size: 24px;
+  padding: 28px 32px;
+  font-size: 28px;
   font-weight: 700;
   color: #fff;
   background: #0072c0;
@@ -133,8 +133,8 @@ main {
 }
 @media (min-width: 640px) {
   .form-btn {
-    font-size: 26px;
-    padding: 26px 32px;
+    font-size: 32px;
+    padding: 30px 36px;
   }
 }
 .form-btn:hover {
@@ -180,8 +180,8 @@ main {
 .form-result-cta {
   display: block;
   width: 100%;
-  padding: 26px 28px;
-  font-size: 24px;
+  padding: 28px 32px;
+  font-size: 28px;
   font-weight: 700;
   color: #fff;
   background: #0072c0 !important;
@@ -193,8 +193,8 @@ main {
 }
 @media (min-width: 640px) {
   .form-result-cta {
-    font-size: 26px;
-    padding: 28px 32px;
+    font-size: 32px;
+    padding: 30px 36px;
   }
 }
 .form-result-cta:hover {
