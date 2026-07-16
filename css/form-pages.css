@@ -140,6 +140,26 @@ main {
   background: #0072c0 !important;
   text-decoration: none;
 }
+/* Phone CTA: smaller on mobile so the number fits on one line */
+#phone-number.form-result-cta,
+#phone-number.phone-cta {
+  font-size: 22px;
+  padding: 22px 16px;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+#phone-number #phone_retreaver {
+  display: inline-block;
+  font-size: inherit;
+  line-height: inherit;
+}
+@media (min-width: 640px) {
+  #phone-number.form-result-cta,
+  #phone-number.phone-cta {
+    font-size: 32px;
+    padding: 28px 24px;
+  }
+}
 #claim-now-contact-button.form-result-cta {
   display: none;
   width: 100% !important;
