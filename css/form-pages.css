@@ -143,27 +143,36 @@ main {
   background: #0072c0 !important;
   text-decoration: none;
 }
-/* Phone CTA: ~89% of screen, fluid type that scales with viewport */
+/* Phone CTA: 80% of card; number text 80% of button, fluid to avoid overflow */
 #phone-number.form-result-cta,
 #phone-number.phone-cta {
   display: block;
-  width: 89% !important;
-  max-width: 89vw;
+  width: 80% !important;
+  max-width: 80%;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
-  padding: clamp(18px, 3.5vw, 30px) clamp(12px, 3vw, 28px) !important;
-  font-size: clamp(24px, 7.2vw, 48px) !important;
+  padding: clamp(16px, 3vw, 28px) clamp(10px, 2.5vw, 20px) !important;
   font-weight: 700 !important;
   line-height: 1.2;
-  white-space: nowrap;
   text-align: center;
+  overflow: hidden;
+  container-type: inline-size;
+  container-name: phone-cta;
 }
 #phone-number #phone_retreaver {
-  display: inline-block;
-  font-size: inherit;
-  line-height: inherit;
+  display: block;
+  width: 80%;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  font-size: clamp(18px, 8.5cqw, 40px);
   font-weight: inherit;
+  line-height: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
 }
 #claim-now-contact-button.form-result-cta {
   display: none;
