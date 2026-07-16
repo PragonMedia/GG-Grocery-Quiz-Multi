@@ -247,21 +247,41 @@ main {
 
 /* Mobile: question tight under divider so age buttons sit above the fold */
 @media (max-width: 639px) {
+  main {
+    display: block;
+    padding-bottom: 0.5rem;
+  }
+  .form-header-bar {
+    padding: 12px 16px;
+  }
+  .form-header-bar .form-header-logo {
+    width: 44px;
+    height: 44px;
+  }
   .form-main-title {
-    padding: 20px 16px 16px;
+    padding: 12px 16px 10px !important;
+    font-size: 28px !important;
+  }
+  .form-divider {
+    margin: 0;
   }
   .form-container {
-    padding: 8px 1rem 2rem;
+    padding: 6px 1rem 1rem !important;
+    margin-top: 0 !important;
   }
   .form-question {
-    padding: 8px 0 12px;
+    padding: 6px 0 10px !important;
+    margin: 0 !important;
   }
   .form-buttons {
-    gap: 10px;
-    padding: 0 0 12px;
+    gap: 8px !important;
+    padding: 0 0 8px !important;
   }
   .form-btn {
-    padding: 18px 20px;
+    padding: 16px 18px !important;
+  }
+  .form-btn.form-step-btn[data-form-step="2"] {
+    font-size: 28px !important;
   }
 }
 
