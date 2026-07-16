@@ -245,4 +245,24 @@ main {
   overflow: hidden !important;
 }
 
+/* Mobile: question tight under divider so age buttons sit above the fold */
+@media (max-width: 639px) {
+  .form-main-title {
+    padding: 20px 16px 16px;
+  }
+  .form-container {
+    padding: 8px 1rem 2rem;
+  }
+  .form-question {
+    padding: 8px 0 12px;
+  }
+  .form-buttons {
+    gap: 10px;
+    padding: 0 0 12px;
+  }
+  .form-btn {
+    padding: 18px 20px;
+  }
+}
+
 
