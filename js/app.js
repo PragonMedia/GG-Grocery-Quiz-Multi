@@ -265,18 +265,24 @@ function buildClaimNowHref() {
   return target.toString();
 }
 
-function showClaimNowButton(href) {
+function showClaimNowButton() {
   var claimContactCta = document.getElementById("claim-now-contact-button");
   var claimWrapper = document.getElementById("claim-now-wrapper");
-  if (claimWrapper) claimWrapper.style.display = "none";
+  if (claimWrapper) {
+    claimWrapper.style.display = "none";
+    var iframe = document.getElementById("claim-now-iframe");
+    if (iframe) iframe.src = "";
+  }
   if (claimContactCta) {
-    claimContactCta.href = href;
     claimContactCta.style.display = "block";
   }
 }
 
 function handleClaimNowClick(e) {
-  if (e) e.preventDefault();
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
 
   try {
     if (typeof fbq === "function") {
@@ -291,7 +297,8 @@ function handleClaimNowClick(e) {
     return;
   }
 
-  window.location.href = buildClaimNowHref();
+  // Same tab only
+  window.location.replace(buildClaimNowHref());
 }
 
 // html1: Get Started → html2
@@ -376,7 +383,7 @@ $("button.form-step-btn[data-form-step='3']").on("click", function () {
       resultInstruction.textContent =
         "Click the button below to claim your grocery card now.";
     }
-    showClaimNowButton(buildClaimNowHref());
+    showClaimNowButton();
     startCountdown();
   }
 });

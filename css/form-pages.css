@@ -135,8 +135,29 @@ main {
 }
 .form-result-cta {
   display: block;
+  width: 100%;
+  box-sizing: border-box;
   background: #0072c0 !important;
   text-decoration: none;
+}
+#claim-now-contact-button.form-result-cta {
+  display: none;
+  width: 100% !important;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 28px 32px !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  line-height: 1.2;
+  border: none !important;
+  border-radius: 8px !important;
+  cursor: pointer;
+}
+@media (min-width: 640px) {
+  #claim-now-contact-button.form-result-cta {
+    font-size: 40px !important;
+    padding: 30px 36px !important;
+  }
 }
 @media (min-width: 640px) {
   .form-btn,
