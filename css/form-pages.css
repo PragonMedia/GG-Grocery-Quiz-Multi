@@ -11,6 +11,9 @@ body {
 }
 main {
   flex: 1 0 auto;
+  /* Keep quiz CTAs on-screen; push footer below the fold on load */
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 .footer {
   position: relative;
