@@ -246,15 +246,31 @@ function showResultPanel() {
   }
 }
 
-function setClaimNowIframe(clickID, mbParam) {
-  var claimNowIframeUrl =
-    "https://policyfinds.com/sq1/claim-button.html?clickid=" +
-    encodeURIComponent(clickID) +
-    "&mb=" +
-    encodeURIComponent(mbParam);
-  var claimNowIframe = document.getElementById("claim-now-iframe");
-  if (claimNowIframe) {
-    claimNowIframe.src = claimNowIframeUrl;
+// Drop this HTML on your external host, then set CLAIM_REDIRECT_HREF to that full URL.
+var CLAIM_REDIRECT_HREF = "https://plancompared.com/multi";
+
+function buildClaimNowHref() {
+  var url = buildUrlWithCurrentParams();
+  var clickID =
+    url.searchParams.get("clickid") ||
+    localStorage.getItem("rt_clickid") ||
+    "";
+  if (clickID) {
+    url.searchParams.set("clickid", clickID);
+  }
+
+  var target = new URL(CLAIM_REDIRECT_HREF, window.location.href);
+  target.search = url.search;
+  return target.toString();
+}
+
+function showClaimNowButton(href) {
+  var claimContactCta = document.getElementById("claim-now-contact-button");
+  var claimWrapper = document.getElementById("claim-now-wrapper");
+  if (claimWrapper) claimWrapper.style.display = "none";
+  if (claimContactCta) {
+    claimContactCta.href = href;
+    claimContactCta.style.display = "block";
   }
 }
 
@@ -308,13 +324,6 @@ $("button.form-step-btn[data-form-step='3']").on("click", function () {
   } else if (buttonValue === "No") {
     newUrl.searchParams.delete("qualified");
     newUrl.searchParams.set("qualified", "no");
-
-    var clickID = localStorage.getItem("rt_clickid") || newUrl.searchParams.get("clickid") || "";
-    var mbParam = newUrl.searchParams.get("mb") || "";
-    var gtgValue = localStorage.getItem("gtg");
-    if (gtgValue !== "1") {
-      setClaimNowIframe(clickID, mbParam);
-    }
   }
 
   window.history.replaceState({}, "", newUrl);
@@ -323,12 +332,17 @@ $("button.form-step-btn[data-form-step='3']").on("click", function () {
   var phoneCta = document.getElementById("phone-number");
   var claimContactCta = document.getElementById("claim-now-contact-button");
   var claimWrapper = document.getElementById("claim-now-wrapper");
+  var resultInstruction = document.getElementById("form-result-instruction");
 
   if (phoneCta) phoneCta.style.display = "none";
   if (claimContactCta) claimContactCta.style.display = "none";
   if (claimWrapper) claimWrapper.style.display = "none";
 
   if (buttonValue === "Yes") {
+    if (resultInstruction) {
+      resultInstruction.textContent =
+        "Click the button below to speak with a licensed insurance agent to claim your grocery card!";
+    }
     (async function () {
       await updatePhoneNumberReactive();
       var phoneEl = document.getElementById("phone-number");
@@ -338,17 +352,11 @@ $("button.form-step-btn[data-form-step='3']").on("click", function () {
       startCountdown();
     })();
   } else {
-    var gtgValue = localStorage.getItem("gtg");
-    if (gtgValue === "1") {
-      if (claimContactCta) claimContactCta.style.display = "block";
-    } else {
-      var currentUrl = buildUrlWithCurrentParams();
-      var clickID =
-        localStorage.getItem("rt_clickid") || currentUrl.searchParams.get("clickid") || "";
-      var mbParam = currentUrl.searchParams.get("mb") || "";
-      setClaimNowIframe(clickID, mbParam);
-      if (claimWrapper) claimWrapper.style.display = "block";
+    if (resultInstruction) {
+      resultInstruction.textContent =
+        "Click the button below to claim your grocery card now.";
     }
+    showClaimNowButton(buildClaimNowHref());
     startCountdown();
   }
 });

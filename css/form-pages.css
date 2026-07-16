@@ -118,10 +118,12 @@ main {
   align-items: center;
   gap: 16px;
 }
-.form-btn {
+/* Default button text (Get Started, Medicare, phone/Claim NOW) */
+.form-btn,
+.form-result-cta {
   width: 100%;
   padding: 28px 32px;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
   color: #fff;
   background: #0072c0;
@@ -131,16 +133,35 @@ main {
   text-align: center;
   transition: background 0.2s, transform 0.2s;
 }
+.form-result-cta {
+  display: block;
+  background: #0072c0 !important;
+  text-decoration: none;
+}
 @media (min-width: 640px) {
-  .form-btn {
-    font-size: 32px;
+  .form-btn,
+  .form-result-cta {
+    font-size: 40px;
     padding: 30px 36px;
   }
 }
-.form-btn:hover {
+/* Age option buttons keep smaller type */
+.form-btn.form-step-btn[data-form-step="2"] {
+  font-size: 28px;
+}
+@media (min-width: 640px) {
+  .form-btn.form-step-btn[data-form-step="2"] {
+    font-size: 32px;
+  }
+}
+.form-btn:hover,
+.form-result-cta:hover {
   background: #ff0000;
   color: #fff;
   transform: scale(1.05);
+}
+.form-result-cta:hover {
+  background: #ff0000 !important;
 }
 .form-step {
   display: none;
@@ -177,33 +198,10 @@ main {
     font-size: 1.625rem;
   }
 }
-.form-result-cta {
-  display: block;
-  width: 100%;
-  padding: 28px 32px;
-  font-size: 28px;
-  font-weight: 700;
-  color: #fff;
-  background: #0072c0 !important;
-  border: none;
-  border-radius: 8px;
-  text-align: center;
-  text-decoration: none;
-  transition: background 0.2s, transform 0.2s;
-}
-@media (min-width: 640px) {
-  .form-result-cta {
-    font-size: 32px;
-    padding: 30px 36px;
-  }
-}
-.form-result-cta:hover {
-  background: #ff0000 !important;
-  color: #fff;
-  transform: scale(1.05);
-}
 #claim-now-container,
 #claim-now-iframe,
 .claim-now-wrapper {
   overflow: hidden !important;
 }
+
+
