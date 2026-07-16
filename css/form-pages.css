@@ -143,36 +143,36 @@ main {
   background: #0072c0 !important;
   text-decoration: none;
 }
-/* Phone CTA: 80% of card; number text 80% of button, fluid to avoid overflow */
+/* Phone CTA: same size as other quiz buttons */
 #phone-number.form-result-cta,
 #phone-number.phone-cta {
   display: block;
-  width: 80% !important;
-  max-width: 80%;
+  width: 100% !important;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
-  padding: clamp(16px, 3vw, 28px) clamp(10px, 2.5vw, 20px) !important;
+  padding: 28px 32px !important;
+  font-size: 32px !important;
   font-weight: 700 !important;
   line-height: 1.2;
   text-align: center;
-  overflow: hidden;
-  container-type: inline-size;
-  container-name: phone-cta;
+  white-space: normal;
+  overflow: visible;
+}
+@media (min-width: 640px) {
+  #phone-number.form-result-cta,
+  #phone-number.phone-cta {
+    font-size: 40px !important;
+    padding: 30px 36px !important;
+  }
 }
 #phone-number #phone_retreaver {
-  display: block;
-  width: 80%;
-  max-width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  box-sizing: border-box;
-  font-size: clamp(18px, 8.5cqw, 40px);
+  display: inline;
+  font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: clip;
+  white-space: inherit;
 }
 #claim-now-contact-button.form-result-cta {
   display: none;
