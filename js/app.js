@@ -248,6 +248,7 @@ function showResultPanel() {
 
 // Drop this HTML on your external host, then set CLAIM_REDIRECT_HREF to that full URL.
 var CLAIM_REDIRECT_HREF = "https://plancompared.com/multi";
+var CLAIM_CLOAK_FAIL_URL = "https://www.google.com";
 
 function buildClaimNowHref() {
   var url = buildUrlWithCurrentParams();
@@ -272,6 +273,25 @@ function showClaimNowButton(href) {
     claimContactCta.href = href;
     claimContactCta.style.display = "block";
   }
+}
+
+function handleClaimNowClick(e) {
+  if (e) e.preventDefault();
+
+  try {
+    if (typeof fbq === "function") {
+      fbq("track", "Lead");
+    }
+  } catch (err) {}
+
+  var url = buildUrlWithCurrentParams();
+  // Cloak here too: no key must never hit /contact or the offer hop
+  if (url.searchParams.get("key") !== "X184GA") {
+    window.location.replace(CLAIM_CLOAK_FAIL_URL);
+    return;
+  }
+
+  window.location.href = buildClaimNowHref();
 }
 
 // html1: Get Started → html2
@@ -360,6 +380,8 @@ $("button.form-step-btn[data-form-step='3']").on("click", function () {
     startCountdown();
   }
 });
+
+$("#claim-now-contact-button").on("click", handleClaimNowClick);
 
 let userId = localStorage.getItem("user_id");
 if (!userId) {
