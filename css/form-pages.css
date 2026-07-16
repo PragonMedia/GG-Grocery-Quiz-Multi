@@ -234,7 +234,7 @@ main {
 }
 .form-result-instruction {
   font-size: 1.5rem;
-  color: #6b7280;
+  color: #374151;
   margin-bottom: 24px;
 }
 @media (min-width: 640px) {
@@ -269,11 +269,11 @@ main {
     margin: 0;
   }
   .form-container {
-    padding: 6px 1rem 1rem !important;
+    padding: 16px 1rem 1rem !important;
     margin-top: 0 !important;
   }
   .form-question {
-    padding: 6px 0 10px !important;
+    padding: 16px 0 12px !important;
     margin: 0 !important;
   }
   .form-buttons {
