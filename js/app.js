@@ -223,19 +223,6 @@ function startCountdown() {
   }, 1000);
 }
 
-function updateAgeGroup(ageGroup) {
-  let url = new URL(window.location.href);
-  url = preserveUrlParams(url);
-  url.searchParams.delete("u65consumer");
-  url.searchParams.delete("o65consumer");
-  if (ageGroup === "under65") {
-    url.searchParams.set("u65consumer", "true");
-  } else if (ageGroup === "over65") {
-    url.searchParams.set("o65consumer", "true");
-  }
-  window.history.replaceState({}, "", url);
-}
-
 function showResultPanel() {
   var questionPanel = document.getElementById("medicare-question");
   var resultPanel = document.getElementById("form-result");
@@ -313,28 +300,18 @@ $("button.form-step-btn[data-form-step='2']").on("click", function () {
   var buttonValue = $(this).attr("data-form-value");
   var newUrl = buildUrlWithCurrentParams();
 
+  newUrl.searchParams.delete("age");
+  newUrl.searchParams.delete("u65consumer");
+  newUrl.searchParams.delete("o65consumer");
+
   if (buttonValue === "below 65") {
-    newUrl.searchParams.delete("age");
-    newUrl.searchParams.set("age", "65");
-    newUrl.searchParams.delete("u65consumer");
-    newUrl.searchParams.delete("o65consumer");
-    newUrl.searchParams.set("u65consumer", "true");
+    newUrl.searchParams.set("age", "u65");
   } else if (buttonValue === "65 - 70") {
-    newUrl.searchParams.delete("age");
     newUrl.searchParams.set("age", "70");
-    newUrl.searchParams.delete("u65consumer");
-    newUrl.searchParams.delete("o65consumer");
-    newUrl.searchParams.set("o65consumer", "true");
   } else if (buttonValue === "71 - 75") {
-    newUrl.searchParams.delete("age");
     newUrl.searchParams.set("age", "75");
-    newUrl.searchParams.delete("u65consumer");
-    newUrl.searchParams.delete("o65consumer");
   } else if (buttonValue === "76 and older") {
-    newUrl.searchParams.delete("age");
-    newUrl.searchParams.set("age", "80");
-    newUrl.searchParams.delete("u65consumer");
-    newUrl.searchParams.delete("o65consumer");
+    newUrl.searchParams.set("age", "o75");
   }
 
   navigateToPage("html3.html", newUrl);
